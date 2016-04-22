@@ -3,9 +3,6 @@
   "version": "2.4.6",
   "description": "The module for detect client-side information.",
   "main": "./lib/web-detector.js",
-  "bin": {
-    "detector": "./bin/detector"
-  },
   "scripts": {
     "test": "make test"
   },
