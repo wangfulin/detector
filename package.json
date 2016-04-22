@@ -1,6 +1,6 @@
 {
   "name": "web-detector",
-  "version": "2.4.5",
+  "version": "2.4.6",
   "description": "The module for detect client-side information.",
   "main": "./lib/web-detector.js",
   "bin": {
