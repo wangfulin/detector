@@ -2,7 +2,7 @@
   "name": "web-detector",
   "version": "2.4.9",
   "description": "The module for detect client-side information.",
-  "main": "./src/web-detector.js",
+  "main": "./lib/web-detector.js",
   "scripts": {
     "test": "make test"
   },
