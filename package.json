@@ -2,7 +2,7 @@
   "name": "web-detector",
   "version": "2.4.8",
   "description": "The module for detect client-side information.",
-  "main": "./lib/web-detector.js",
+  "main": "./src/web-detector.js",
   "scripts": {
     "test": "make test"
   },
@@ -23,5 +23,11 @@
   "bugs": {
     "url": "https://github.com/wangfulin/detector/issues"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "gulp-babel": "^6.1.2"
+  },
+  "dependencies": {
+    "es5-shim": "^4.5.8"
+  }
 }

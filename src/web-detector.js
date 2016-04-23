@@ -1,4 +1,5 @@
 "use strict";
+require('es5-shim');
 
 const Detector = require("./detector.js");
 const WebRules = require("./web-rules.js");
@@ -14,10 +15,8 @@ const detector = new Detector(WebRules);
 // 解析使用 Trident 内核的浏览器的 `浏览器模式` 和 `文档模式` 信息。
 // @param {String} ua, userAgent string.
 // @return {Object}
-function IEMode(ua) {
-  if (!WebRules.re_msie.test(ua)) {
-    return null;
-  }
+function IEMode(ua){
+  if(!WebRules.re_msie.test(ua)){ return null; }
 
   let m;
   let engineMode;
@@ -27,7 +26,7 @@ function IEMode(ua) {
 
   // IE8 及其以上提供有 Trident 信息，
   // 默认的兼容模式，UA 中 Trident 版本不发生变化。
-  if (ua.indexOf("trident/") !== -1) {
+  if(ua.indexOf("trident/") !== -1){
     m = /\btrident\/([0-9.]+)/.exec(ua);
     if (m && m.length >= 2) {
       // 真实引擎版本。
@@ -55,17 +54,17 @@ function IEMode(ua) {
     browserMode: browserMode,
     engineVersion: engineVersion,
     engineMode: engineMode,
-    compatible: engineVersion !== engineMode
+    compatible: engineVersion !== engineMode,
   };
 }
 
-function WebParse(ua) {
+function WebParse (ua) {
   const d = detector.parse(ua);
 
   const ieCore = IEMode(ua);
 
   // IE 内核的浏览器，修复版本号及兼容模式。
-  if (ieCore) {
+  if(ieCore) {
     const engineName = d.engine.name;
     const engineVersion = ieCore.engineVersion || ieCore.engineMode;
     const ve = parseFloat(engineVersion);
@@ -77,7 +76,7 @@ function WebParse(ua) {
       fullVersion: engineVersion,
       mode: parseFloat(engineMode),
       fullMode: engineMode,
-      compatible: ieCore ? ieCore.compatible : false
+      compatible: ieCore ? ieCore.compatible : false,
     };
     d.engine[d.engine.name] = ve;
 
@@ -85,7 +84,7 @@ function WebParse(ua) {
     // IE 内核的浏览器，修复浏览器版本及兼容模式。
     // 仅修改 IE 浏览器的版本，其他 IE 内核的版本不修改。
     let browserVersion = d.browser.fullVersion;
-    if (browserName === "ie") {
+    if(browserName === "ie"){
       browserVersion = ieCore.browserVersion;
     }
     const browserMode = ieCore.browserMode;
@@ -96,7 +95,7 @@ function WebParse(ua) {
       fullVersion: browserVersion,
       mode: parseFloat(browserMode),
       fullMode: browserMode,
-      compatible: ieCore ? ieCore.compatible : false
+      compatible: ieCore ? ieCore.compatible : false,
     };
     d.browser[browserName] = vb;
   }
